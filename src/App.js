@@ -15,7 +15,7 @@ export default function App() {
       {products.map((val) => (
         <div class="card bg-light mb-3">
           <div class="card-body">
-            <img class="img-fluid image-style" src={val.image} />
+            <img alt="product" class="img-fluid image-style" src={val.image} />
             <h5 class="card-title">{val.title}</h5>
             <p class="card-text">{val.description}</p>
             <p class="bloc_left_price">{val.price}</p>
