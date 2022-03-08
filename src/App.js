@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
-function App() {
+export default function App() {
+  const [products, setProducts] = useState([]);
+  console.log(products);
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then((res) => res.json())
+      .then((json) => setProducts(json));
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {products.map((val) => (
+        <div class="card bg-light mb-3">
+          <div class="card-body">
+            <img class="img-fluid image-style" src={val.image} />
+            <h5 class="card-title">{val.title}</h5>
+            <p class="card-text">{val.description}</p>
+            <p class="bloc_left_price">{val.price}</p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
-
-export default App;
